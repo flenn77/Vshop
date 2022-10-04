@@ -12,6 +12,37 @@
     <title>Document</title>
 </head>
 <body>
+
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="vetement.php">Vetement</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="chaussure.php">Chaussure</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="accessoire.php">Accessoires</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+
+
+
+
+
+
     <br><bR>
 
 <?php
@@ -21,7 +52,7 @@ $curl = curl_init();
 
 
 //Spécifie l'url sur laquelle pointee
-curl_setopt($curl, CURLOPT_URL, 'https://api.airtable.com/v0/app708JRaOzw9xfPE/tbl51MmczYubzgbBG?fields%5B%5D=Taille&fields%5B%5D=Type&fields%5B%5D=Nom&fields%5B%5D=NameType&view=Grid');
+curl_setopt($curl, CURLOPT_URL, 'https://api.airtable.com/v0/app708JRaOzw9xfPE/Produits?maxRecords=3&view=Grid');
 
 
 //Evite d'afficher sur la page le résultat
@@ -44,12 +75,43 @@ $resultat= json_decode($resultat);
 
 foreach ($resultat->records as $record) { 
     print_r($record->fields);
-    echo '<p><a href="">'.$record->fields->NameType.'</a></p>';
+    echo '<p>
+    '.$record->fields->Prix.'
+    '.$record->fields->Description.'
+
+    
+ 
+</p>';
 }
 
 ?>
 
+   <!-- Button trigger modal -->
+   <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
+  Chaussure
+</button>
 
+<!-- Modal -->
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      </div>
+      <div class="modal-body">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 </body>
